@@ -7,27 +7,23 @@ const TodoList = () => {
     const {state, dispatch} = useTodoContext();
 
     const filteredTodos = state.todos.filter(todo => {
-        if(state.filter === 'pending'){
-            return !todo.completed
-        }else if(state.filter === 'completed'){
-            return todo.completed
-        }else{
-            return true;
-        }
+        if(state.filter === 'active') return !todo.completed;
+        if(state.filter === 'completed') return todo.completed;
+        return true;
     })
   return (
     <>
         <FilterContainer>
-            <FilterButton onClick={() => dispatchEvent({type : "SET_FILTER", payload : "all"})} > All </FilterButton>
-            <FilterButton onClick={() => dispatch({type : "SET_FILTER", payload : "pending"})}> Active </FilterButton>
+            <FilterButton onClick={() => dispatch({type : "SET_FILTER", payload : "all"})} > All </FilterButton>
+            <FilterButton onClick={() => dispatch({type : "SET_FILTER", payload : "active"})}> Active </FilterButton>
             <FilterButton onClick={() => dispatch({type: "SET_FILTER", payload : "completed"})}> Completed </FilterButton>
         </FilterContainer>
 
         <List>
             {
-                filteredTodos.map((todo) => {
-                    <TodoItem key={todo.id} todo={todo} />  
-                })
+                filteredTodos.map((todo) => (
+                    <TodoItem key={todo.id} todo={todo} /> 
+                ))
             }
         </List>
     </>
