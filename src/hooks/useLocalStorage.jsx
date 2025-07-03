@@ -10,10 +10,9 @@ const useLocalStorage = (key, initialValue) => {
             return initialValue;
         }
     })
-}
-
-const setValue = (value) => {
-    try {
+    
+    const setValue = (value) => {
+        try {
         const valueToStore = value instanceof Function ? value(storedValue) : value;
         setStoredValue(valueToStore);
         localStorage.setItem(key, JSON.stringify(valueToStore));
@@ -22,7 +21,8 @@ const setValue = (value) => {
     }
 
 }
-
 return [storedValue, setValue]
+
+}
 
 export default useLocalStorage;
