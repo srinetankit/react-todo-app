@@ -56,8 +56,8 @@ export const ListItem = styled.li`
 
 export const Text = styled.span`
   flex: 1;
-  ${({ completed }) =>
-    completed &&
+  ${({ $completed }) =>
+    $completed &&
     css`
       text-decoration: line-through;
       color: #999;
