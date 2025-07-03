@@ -12,7 +12,7 @@ const TodoItem = ({todo}) => {
     })
   }
 
-  const deleteTodo = ({todo}) => {
+  const deleteTodo = () => {
     dispatch({
       type : "DELETE_TODO",
       payload : todo.id
@@ -23,9 +23,9 @@ const TodoItem = ({todo}) => {
       <Checkbox
         type="checkbox"
         checked={todo.completed}
-        onClick={toggleTodo}
+        onChange={toggleTodo}
       />
-      <Text completed={todo.completed}>{todo.text}</Text>
+      <Text $completed={todo.completed}>{todo.text}</Text>
       <DeleteButton onClick={deleteTodo}>Delete</DeleteButton>
     </ListItem>
   )
